@@ -233,7 +233,7 @@ along with semanticcms-core-renderer-html.  If not, see <http://www.gnu.org/lice
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
-							<offlineLinks>
+							<offlineLinks combine.children="append">
 								<!-- Direct -->
 								<offlineLink>
 									<url>https://oss.aoapps.com/collections/apidocs/</url>
@@ -279,9 +279,9 @@ along with semanticcms-core-renderer-html.  If not, see <http://www.gnu.org/lice
 									<url>https://oss.aoapps.com/web-resources/servlet/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoapps/ao-web-resources-servlet</location>
 								</offlineLink>
-								<!-- Java EE: <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId> -->
-								<!-- Java EE: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
-								<!-- Java EE: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
+								<!-- ao-javadoc-offline: <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId> -->
+								<!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
+								<!-- ao-javadoc-offline: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
 								<offlineLink>
 									<url>https://www.joda.org/joda-time/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/joda-time/joda-time</location>
@@ -309,16 +309,6 @@ along with semanticcms-core-renderer-html.  If not, see <http://www.gnu.org/lice
 								<offlineLink>
 									<url>https://semanticcms.com/core/renderer/servlet/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-renderer-servlet</location>
-								</offlineLink>
-								<!-- Java SE -->
-								<offlineLink>
-									<url>${javadoc.link.javase}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javase/${javase.release}</location>
-								</offlineLink>
-								<!-- Java EE -->
-								<offlineLink>
-									<url>${javadoc.link.javaee}</url>
-									<location>${project.build.directory}/offlineLinks/com/aoapps/javadoc/offline/javaee/${javaee.version}</location>
 								</offlineLink>
 							</offlineLinks>
 						</configuration>
