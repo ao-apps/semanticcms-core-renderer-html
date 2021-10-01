@@ -23,6 +23,7 @@
 package com.semanticcms.core.renderer.html;
 
 import com.aoapps.encoding.MediaType;
+import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.web.resources.servlet.RegistryEE;
 import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.Link;
@@ -59,7 +60,7 @@ public class HtmlRenderer implements Renderer {
 
 	// <editor-fold defaultstate="collapsed" desc="Singleton Instance (per application)">
 
-	@WebListener("Registers the HtmlRenderer with SemanticCMS and exposes the HtmlRenderer as an application-scope variable \"" + APPLICATION_ATTRIBUTE + "\".")
+	@WebListener("Registers the HtmlRenderer with SemanticCMS and exposes the HtmlRenderer as an application-scope variable \"" + APPLICATION_ATTRIBUTE_NAME + "\".")
 	public static class Initializer implements ServletContextListener {
 
 		private HtmlRenderer instance;
@@ -78,23 +79,21 @@ public class HtmlRenderer implements Renderer {
 				instance.destroy();
 				instance = null;
 			}
-			event.getServletContext().removeAttribute(APPLICATION_ATTRIBUTE);
+			APPLICATION_ATTRIBUTE.context(event.getServletContext()).remove();
 		}
 	}
 
-	public static final String APPLICATION_ATTRIBUTE = "htmlRenderer";
+	private static final String APPLICATION_ATTRIBUTE_NAME = "htmlRenderer";
+
+	public static final ScopeEE.Application.Attribute<HtmlRenderer> APPLICATION_ATTRIBUTE =
+		ScopeEE.APPLICATION.attribute(APPLICATION_ATTRIBUTE_NAME);
 
 	/**
 	 * Gets the {@link HtmlRenderer} instance, creating it if necessary.
 	 */
 	public static HtmlRenderer getInstance(ServletContext servletContext) {
-		HtmlRenderer htmlRenderer = (HtmlRenderer)servletContext.getAttribute(APPLICATION_ATTRIBUTE);
-		if(htmlRenderer == null) {
-			// TODO: Support custom implementations via context-param?
-			htmlRenderer = new HtmlRenderer(servletContext);
-			servletContext.setAttribute(APPLICATION_ATTRIBUTE, htmlRenderer);
-		}
-		return htmlRenderer;
+		// TODO: Support custom implementations via context-param?
+		return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new HtmlRenderer(servletContext));
 	}
 
 	private final ServletContext servletContext;
@@ -339,7 +338,7 @@ public class HtmlRenderer implements Renderer {
 	/**
 	 * Gets the CSS class to use in links to the given element.
 	 * Also looks for match on parent classes up to and including Element itself.
-	 * 
+	 *
 	 * @return  The CSS class or {@code null} when element is null or no class registered for it or any super class.
 	 *
 	 * @see  LinkCssClassResolver#getCssLinkClass(com.semanticcms.core.model.Element)

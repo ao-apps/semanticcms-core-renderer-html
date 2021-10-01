@@ -26,6 +26,7 @@ import com.aoapps.encoding.Doctype;
 import com.aoapps.encoding.Serialization;
 import com.aoapps.encoding.servlet.DoctypeEE;
 import com.aoapps.encoding.servlet.SerializationEE;
+import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.web.resources.registry.Registry;
 import com.semanticcms.core.model.Page;
 import java.io.IOException;
@@ -44,20 +45,21 @@ abstract public class Theme {
 	/**
 	 * The request-scope attribute that will store the currently active theme.
 	 */
-	private static final String REQUEST_ATTRIBUTE = Theme.class.getName();
+	private static final ScopeEE.Request.Attribute<Theme> REQUEST_ATTRIBUTE =
+		ScopeEE.REQUEST.attribute(Theme.class.getName());
 
 	/**
 	 * Gets the current theme on the given request or {@code null} when none active.
 	 */
 	public static Theme getTheme(ServletRequest request) {
-		return (Theme)request.getAttribute(REQUEST_ATTRIBUTE);
+		return REQUEST_ATTRIBUTE.context(request).get();
 	}
 
 	/**
 	 * Sets the current theme on the given request or {@code null} for none active.
 	 */
 	public static void setTheme(ServletRequest request, Theme theme) {
-		request.setAttribute(REQUEST_ATTRIBUTE, theme);
+		REQUEST_ATTRIBUTE.context(request).set(theme);
 	}
 
 	/**

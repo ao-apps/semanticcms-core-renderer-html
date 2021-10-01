@@ -24,6 +24,7 @@ package com.semanticcms.core.renderer.html;
 
 import com.aoapps.collections.AoCollections;
 import com.aoapps.lang.NullArgumentException;
+import com.aoapps.servlet.attribute.ScopeEE;
 import com.semanticcms.core.controller.CapturePage;
 import com.semanticcms.core.controller.PageDags;
 import com.semanticcms.core.controller.PageRefResolver;
@@ -51,7 +52,7 @@ public class PageIndex {
 	/**
 	 * The request scope variable containing any active page index.
 	 */
-	public static final String REQUEST_ATTRIBUTE = "pageIndex";
+	public static final ScopeEE.Request.Attribute<PageIndex> REQUEST_ATTRIBUTE = ScopeEE.REQUEST.attribute("pageIndex");
 
 	/**
 	 * Gets the current page index setup by a combined view or <code>null</code>
@@ -59,7 +60,7 @@ public class PageIndex {
 	 */
 	public static PageIndex getCurrentPageIndex(ServletRequest request) {
 		NullArgumentException.checkNotNull(request, "request");
-		return (PageIndex)request.getAttribute(REQUEST_ATTRIBUTE);
+		return REQUEST_ATTRIBUTE.context(request).get();
 	}
 
 	/**
@@ -91,8 +92,8 @@ public class PageIndex {
 	 * Otherwise, the id is unchanged.
 	 *
 	 * @param  id  optional, id not added when null or empty
-	 * 
-	 * @see  #appendIdInPage(java.lang.Integer, java.lang.String, java.lang.Appendable) 
+	 *
+	 * @see  #appendIdInPage(java.lang.Integer, java.lang.String, java.lang.Appendable)
 	 */
 	public static String getRefId(Integer index, String id) throws IOException {
 		if(index != null) {
@@ -288,7 +289,7 @@ public class PageIndex {
 	public Map<PageRef, Integer> getPageIndexes() {
 		return pageIndexes;
 	}
-	
+
 	public Integer getPageIndex(PageRef pagePath) {
 		return pageIndexes.get(pagePath);
 	}
