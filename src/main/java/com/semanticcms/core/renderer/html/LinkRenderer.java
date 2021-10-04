@@ -60,7 +60,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 
-final public class LinkRenderer {
+public final class LinkRenderer {
 
 	/**
 	 * @param  <Ex>  An arbitrary exception type that may be thrown

@@ -55,7 +55,7 @@ import org.joda.time.ReadableInstant;
  * A site may provide multiple views of the data.  Except the default content view,
  * views will typically show something about the current page and all of its children.
  */
-abstract public class View implements Comparable<View> {
+public abstract class View implements Comparable<View> {
 
 	/**
 	 * The separator used between segments of the title.
@@ -126,22 +126,22 @@ abstract public class View implements Comparable<View> {
 	/**
 	 * Gets the grouping for this view.
 	 */
-	abstract public Group getGroup();
+	public abstract Group getGroup();
 
 	/**
 	 * Gets the display name for this view.
 	 */
-	abstract public String getDisplay();
+	public abstract String getDisplay();
 
 	/**
 	 * Gets the unique name of this view.
 	 */
-	abstract public String getName();
+	public abstract String getName();
 
 	/**
 	 * Checks if this is the default view.
 	 */
-	final public boolean isDefault() {
+	public final boolean isDefault() {
 		return Link.DEFAULT_VIEW_NAME.equals(getName());
 	}
 
@@ -340,12 +340,12 @@ abstract public class View implements Comparable<View> {
 	/**
 	 * Gets the description for this view of the given page or {@code null} for none.
 	 */
-	abstract public String getDescription(Page page);
+	public abstract String getDescription(Page page);
 
 	/**
 	 * Gets the keywords for this view of the given page or {@code null} for none.
 	 */
-	abstract public String getKeywords(Page page);
+	public abstract String getKeywords(Page page);
 
 	/**
 	 * Configures the {@linkplain com.aoapps.web.resources.servlet.RegistryEE.Request request-scope web resources} that this view uses.
@@ -396,7 +396,7 @@ abstract public class View implements Comparable<View> {
 	 * Gets whether robots are allowed to access this view to the given page.  When true will include both
 	 * "noindex, nofollow" in the head and put "nofollow" on links to this view.
 	 */
-	abstract public boolean getAllowRobots(
+	public abstract boolean getAllowRobots(
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
@@ -408,7 +408,7 @@ abstract public class View implements Comparable<View> {
 	 *
 	 * TODO: Is SkipPageException acceptable at the view rendering stage?
 	 */
-	abstract public <__ extends FlowContent<__>> void doView(
+	public abstract <__ extends FlowContent<__>> void doView(
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,

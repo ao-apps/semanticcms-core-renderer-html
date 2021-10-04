@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with components.
  */
-final public class ComponentUtils {
+public final class ComponentUtils {
 
 	public static void doComponents(
 		ServletContext servletContext,

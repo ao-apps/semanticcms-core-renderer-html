@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with {@link HtmlRenderer}.
  */
-final public class HtmlRendererUtils {
+public final class HtmlRendererUtils {
 
 	/**
 	 * Gets all the parents of the given page that are not in missing books

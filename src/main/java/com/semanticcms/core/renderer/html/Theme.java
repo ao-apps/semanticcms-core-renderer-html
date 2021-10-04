@@ -40,7 +40,7 @@ import javax.servlet.jsp.SkipPageException;
 /**
  * A theme is responsible for the overall view of the site.
  */
-abstract public class Theme {
+public abstract class Theme {
 
 	/**
 	 * The request-scope attribute that will store the currently active theme.
@@ -91,17 +91,17 @@ abstract public class Theme {
 	/**
 	 * Gets the display name for this theme.
 	 */
-	abstract public String getDisplay();
+	public abstract String getDisplay();
 
 	/**
 	 * Gets the unique name of this theme.
 	 */
-	abstract public String getName();
+	public abstract String getName();
 
 	/**
 	 * Checks if this is the default theme.
 	 */
-	final public boolean isDefault() {
+	public final boolean isDefault() {
 		return HtmlRenderer.DEFAULT_THEME_NAME.equals(getName());
 	}
 
@@ -128,7 +128,7 @@ abstract public class Theme {
 	 *
 	 * TODO: Is SkipPageException acceptable at the view rendering stage?
 	 */
-	abstract public void doTheme(
+	public abstract void doTheme(
 		ServletContext servletContext,
 		HttpServletRequest request,
 		HttpServletResponse response,
