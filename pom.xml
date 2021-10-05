@@ -41,7 +41,7 @@ along with semanticcms-core-renderer-html.  If not, see <http://www.gnu.org/lice
 		<description.html><![CDATA[<a target="${javadoc.target}" href="https://semanticcms.com/core/pages/">SemanticCMS pages</a> rendered as HTML in a Servlet environment.]]></description.html>
 		<!-- SonarQube -->
 		<sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
-		<sonar.organization>aoindustries</sonar.organization>
+		<sonar.organization>ao-apps</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<!-- TODO: Implement tests -->
 		<sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
@@ -76,20 +76,20 @@ along with semanticcms-core-renderer-html.  If not, see <http://www.gnu.org/lice
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/aoindustries/semanticcms-core-renderer-html.git</connection>
-		<developerConnection>scm:git:git@github.com:aoindustries/semanticcms-core-renderer-html.git</developerConnection>
-		<url>https://github.com/aoindustries/semanticcms-core-renderer-html</url>
+		<connection>scm:git:git://github.com/ao-apps/semanticcms-core-renderer-html.git</connection>
+		<developerConnection>scm:git:git@github.com:ao-apps/semanticcms-core-renderer-html.git</developerConnection>
+		<url>https://github.com/ao-apps/semanticcms-core-renderer-html</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/aoindustries/semanticcms-core-renderer-html/issues</url>
+		<url>https://github.com/ao-apps/semanticcms-core-renderer-html/issues</url>
 	</issueManagement>
 
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/aoindustries/semanticcms-core-renderer-html/actions</url>
+		<url>https://github.com/ao-apps/semanticcms-core-renderer-html/actions</url>
 	</ciManagement>
 
 	<repositories>
