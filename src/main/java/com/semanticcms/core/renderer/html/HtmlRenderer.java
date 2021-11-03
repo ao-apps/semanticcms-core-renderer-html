@@ -383,12 +383,9 @@ public class HtmlRenderer implements Renderer {
 	// TODO: Take a set of Group.Name activations, too
 	public <E extends com.semanticcms.core.model.Element> void addLinkCssClass(
 		Class<E> elementType,
-		final String cssLinkClass
+		String cssLinkClass
 	) throws IllegalStateException {
-		addLinkCssClassResolver(
-			elementType,
-			(E element) -> cssLinkClass
-		);
+		addLinkCssClassResolver(elementType, element -> cssLinkClass);
 	}
 	// </editor-fold>
 
@@ -461,12 +458,9 @@ public class HtmlRenderer implements Renderer {
 	// TODO: Take a set of Group.Name activations, too
 	public <N extends com.semanticcms.core.model.Node> void addListItemCssClass(
 		Class<N> nodeType,
-		final String listItemCssClass
+		String listItemCssClass
 	) throws IllegalStateException {
-		addListItemCssClassResolver(
-			nodeType,
-			node -> listItemCssClass
-		);
+		addListItemCssClassResolver(nodeType, node -> listItemCssClass);
 	}
 	// </editor-fold>
 
