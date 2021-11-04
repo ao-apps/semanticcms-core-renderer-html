@@ -506,16 +506,16 @@ public class HtmlRenderer implements Renderer {
 				View view;
 				{
 					String viewName = request.getParameter(VIEW_PARAM);
-					Map<String, View> views = htmlRenderer.getViewsByName();
+					Map<String, View> viewsMap = htmlRenderer.getViewsByName();
 					if(viewName == null) {
 						view = null;
 					} else {
 						if(Link.DEFAULT_VIEW_NAME.equals(viewName)) throw new ServletException(VIEW_PARAM + " paramater may not be sent for default view: " + viewName);
-						view = views.get(viewName);
+						view = viewsMap.get(viewName);
 					}
 					if(view == null) {
 						// Find default
-						view = views.get(Link.DEFAULT_VIEW_NAME);
+						view = viewsMap.get(Link.DEFAULT_VIEW_NAME);
 						if(view == null) throw new ServletException("Default view not found: " + Link.DEFAULT_VIEW_NAME);
 					}
 				}
