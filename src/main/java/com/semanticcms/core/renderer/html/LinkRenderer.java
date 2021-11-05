@@ -60,7 +60,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 
-public final class LinkRenderer {
+public abstract class LinkRenderer {
+
+	/** Make no instances. */
+	private LinkRenderer() {throw new AssertionError();}
 
 	/**
 	 * @param  <Ex>  An arbitrary exception type that may be thrown
@@ -621,11 +624,5 @@ public final class LinkRenderer {
 			// Invoke body for any meta data, but discard any output
 			if(body != null) body.doBody(true);
 		}
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private LinkRenderer() {
 	}
 }

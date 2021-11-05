@@ -106,6 +106,7 @@ public class HtmlRenderer implements Renderer {
 	 * Called when the context is shutting down.
 	 */
 	protected void destroy() {
+		// Do nothing
 	}
 	// </editor-fold>
 
@@ -117,7 +118,7 @@ public class HtmlRenderer implements Renderer {
 	 */
 	public static final String VIEW_PARAM = "view";
 
-	private static class ViewsLock {}
+	private static class ViewsLock {/* Empty lock class to help heap profile */}
 	private final ViewsLock viewsLock = new ViewsLock();
 
 	/**

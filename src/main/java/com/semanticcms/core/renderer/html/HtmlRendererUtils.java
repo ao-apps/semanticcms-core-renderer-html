@@ -38,7 +38,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with {@link HtmlRenderer}.
  */
-public final class HtmlRendererUtils {
+public abstract class HtmlRendererUtils {
+
+	/** Make no instances. */
+	private HtmlRendererUtils() {throw new AssertionError();}
 
 	/**
 	 * Gets all the parents of the given page that are not in missing books
@@ -68,7 +71,4 @@ public final class HtmlRendererUtils {
 		}
 		return AoCollections.optimalUnmodifiableSet(applicableParents);
 	}
-
-	/** Make no instances. */
-	private HtmlRendererUtils() {}
 }

@@ -34,7 +34,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with components.
  */
-public final class ComponentUtils {
+public abstract class ComponentUtils {
+
+	/** Make no instances. */
+	private ComponentUtils() {throw new AssertionError();}
 
 	public static void doComponents(
 		ServletContext servletContext,
@@ -72,11 +75,5 @@ public final class ComponentUtils {
 				);
 			}
 		}
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private ComponentUtils() {
 	}
 }

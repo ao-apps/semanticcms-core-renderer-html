@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2015, 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2015, 2016, 2017, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,7 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Provides static access to the client-provided headers.
  */
-public class Headers {
+public abstract class Headers {
+
+	/** Make no instances. */
+	private Headers() {throw new AssertionError();}
 
 	/**
 	 * A client may include this header to indicate it is in export mode.
@@ -47,11 +50,5 @@ public class Headers {
 	 */
 	public static boolean isExporting(HttpServletRequest request) {
 		return EXPORTING_HEADER_VALUE.equalsIgnoreCase(request.getHeader(EXPORTING_HEADER));
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private Headers() {
 	}
 }

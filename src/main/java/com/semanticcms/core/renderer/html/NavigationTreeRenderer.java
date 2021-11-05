@@ -65,7 +65,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // TODO: Should have a new navigation-tree-* set of packages for this and related model, servlet, taglib
-public final class NavigationTreeRenderer {
+public abstract class NavigationTreeRenderer {
+
+	/** Make no instances. */
+	private NavigationTreeRenderer() {throw new AssertionError();}
 
 	public static <T extends Node> List<T> filterNodes(Collection<T> children, Set<T> nodesToInclude) {
 		int size = children.size();
@@ -607,11 +610,5 @@ public final class NavigationTreeRenderer {
 		}
 		if(li_c != null) li_c.__();
 		return foundThisPage;
-	}
-
-	/**
-	 * Make no instances.
-	 */
-	private NavigationTreeRenderer() {
 	}
 }
