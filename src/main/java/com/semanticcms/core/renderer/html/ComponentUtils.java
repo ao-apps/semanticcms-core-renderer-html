@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2020, 2021  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2020, 2021, 2022  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Utilities for working with components.
  */
-public abstract class ComponentUtils {
+public final class ComponentUtils {
 
 	/** Make no instances. */
 	private ComponentUtils() {throw new AssertionError();}
