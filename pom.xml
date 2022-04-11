@@ -124,6 +124,13 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
 					</usedDependencies>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId><artifactId>spotbugs-maven-plugin</artifactId>
+				<configuration>
+					<!-- TODO: Clean-up SpotBugs -->
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
