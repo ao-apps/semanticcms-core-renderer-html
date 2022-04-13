@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021  AO Industries, Inc.
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -32,7 +32,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.SkipPageException;
 
 // TODO: This should have a model component for separation of content from rendering
 // TODO: This would make the navigation tree fetch pages from the rendering server's point of view
@@ -136,8 +135,9 @@ public class NavigationTree {
 		return this;
 	}
 
-	public void invoke() throws ServletException, IOException, SkipPageException {
-		NavigationTreeRenderer.writeNavigationTree(servletContext,
+	public void invoke() throws ServletException, IOException {
+		NavigationTreeRenderer.writeNavigationTree(
+			servletContext,
 			request,
 			response,
 			new DocumentEE(servletContext, request, response),
