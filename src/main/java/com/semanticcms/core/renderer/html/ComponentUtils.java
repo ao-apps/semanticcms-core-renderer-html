@@ -37,44 +37,46 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class ComponentUtils {
 
-	/** Make no instances. */
-	private ComponentUtils() {throw new AssertionError();}
+  /** Make no instances. */
+  private ComponentUtils() {
+    throw new AssertionError();
+  }
 
-	public static void doComponents(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		DocumentEE document,
-		View view,
-		Page page,
-		ComponentPosition position,
-		boolean reverse
-	) throws ServletException, IOException {
-		List<Component> components = HtmlRenderer.getInstance(servletContext).getComponents();
-		if(reverse) {
-			for(int i=components.size()-1; i>=0; i--) {
-				components.get(i).doComponent(
-					servletContext,
-					request,
-					response,
-					document,
-					view,
-					page,
-					position
-				);
-			}
-		} else {
-			for(Component component : components) {
-				component.doComponent(
-					servletContext,
-					request,
-					response,
-					document,
-					view,
-					page,
-					position
-				);
-			}
-		}
-	}
+  public static void doComponents(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    DocumentEE document,
+    View view,
+    Page page,
+    ComponentPosition position,
+    boolean reverse
+  ) throws ServletException, IOException {
+    List<Component> components = HtmlRenderer.getInstance(servletContext).getComponents();
+    if (reverse) {
+      for (int i=components.size()-1; i >= 0; i--) {
+        components.get(i).doComponent(
+          servletContext,
+          request,
+          response,
+          document,
+          view,
+          page,
+          position
+        );
+      }
+    } else {
+      for (Component component : components) {
+        component.doComponent(
+          servletContext,
+          request,
+          response,
+          document,
+          view,
+          page,
+          position
+        );
+      }
+    }
+  }
 }

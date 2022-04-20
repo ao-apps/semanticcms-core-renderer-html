@@ -43,97 +43,99 @@ import javax.servlet.jsp.SkipPageException;
  */
 public abstract class Theme {
 
-	/**
-	 * The request-scope attribute that will store the currently active theme.
-	 */
-	private static final ScopeEE.Request.Attribute<Theme> REQUEST_ATTRIBUTE =
-		ScopeEE.REQUEST.attribute(Theme.class.getName());
+  /**
+   * The request-scope attribute that will store the currently active theme.
+   */
+  private static final ScopeEE.Request.Attribute<Theme> REQUEST_ATTRIBUTE =
+    ScopeEE.REQUEST.attribute(Theme.class.getName());
 
-	/**
-	 * Gets the current theme on the given request or {@code null} when none active.
-	 */
-	public static Theme getTheme(ServletRequest request) {
-		return REQUEST_ATTRIBUTE.context(request).get();
-	}
+  /**
+   * Gets the current theme on the given request or {@code null} when none active.
+   */
+  public static Theme getTheme(ServletRequest request) {
+    return REQUEST_ATTRIBUTE.context(request).get();
+  }
 
-	/**
-	 * Sets the current theme on the given request or {@code null} for none active.
-	 */
-	public static void setTheme(ServletRequest request, Theme theme) {
-		REQUEST_ATTRIBUTE.context(request).set(theme);
-	}
+  /**
+   * Sets the current theme on the given request or {@code null} for none active.
+   */
+  public static void setTheme(ServletRequest request, Theme theme) {
+    REQUEST_ATTRIBUTE.context(request).set(theme);
+  }
 
-	/**
-	 * Two themes with the same name are considered equal.
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if(!(obj instanceof Theme)) return false;
-		Theme o = (Theme)obj;
-		return getName().equals(o.getName());
-	}
+  /**
+   * Two themes with the same name are considered equal.
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Theme)) {
+      return false;
+    }
+    Theme o = (Theme)obj;
+    return getName().equals(o.getName());
+  }
 
-	/**
-	 * Consistent with equals, hashCode based on name.
-	 */
-	@Override
-	public int hashCode() {
-		return getName().hashCode();
-	}
+  /**
+   * Consistent with equals, hashCode based on name.
+   */
+  @Override
+  public int hashCode() {
+    return getName().hashCode();
+  }
 
-	/**
-	 * @see  #getDisplay()
-	 */
-	@Override
-	public String toString() {
-		return getDisplay();
-	}
+  /**
+   * @see  #getDisplay()
+   */
+  @Override
+  public String toString() {
+    return getDisplay();
+  }
 
-	/**
-	 * Gets the display name for this theme.
-	 */
-	public abstract String getDisplay();
+  /**
+   * Gets the display name for this theme.
+   */
+  public abstract String getDisplay();
 
-	/**
-	 * Gets the unique name of this theme.
-	 */
-	public abstract String getName();
+  /**
+   * Gets the unique name of this theme.
+   */
+  public abstract String getName();
 
-	/**
-	 * Checks if this is the default theme.
-	 */
-	public final boolean isDefault() {
-		return HtmlRenderer.DEFAULT_THEME_NAME.equals(getName());
-	}
+  /**
+   * Checks if this is the default theme.
+   */
+  public final boolean isDefault() {
+    return HtmlRenderer.DEFAULT_THEME_NAME.equals(getName());
+  }
 
-	/**
-	 * Configures the {@linkplain com.aoapps.web.resources.servlet.RegistryEE.Request request-scope web resources} that this theme uses.
-	 * <p>
-	 * Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.
-	 * </p>
-	 */
-	@SuppressWarnings("NoopMethodInAbstractClass")
-	public void configureResources(ServletContext servletContext, HttpServletRequest req, HttpServletResponse resp, View view, Page page, Registry requestRegistry) {
-		// Do nothing
-	}
+  /**
+   * Configures the {@linkplain com.aoapps.web.resources.servlet.RegistryEE.Request request-scope web resources} that this theme uses.
+   * <p>
+   * Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.
+   * </p>
+   */
+  @SuppressWarnings("NoopMethodInAbstractClass")
+  public void configureResources(ServletContext servletContext, HttpServletRequest req, HttpServletResponse resp, View view, Page page, Registry requestRegistry) {
+    // Do nothing
+  }
 
-	/**
-	 * Renders the theme.
-	 * <p>
-	 * Both the {@link Serialization} and {@link Doctype} may have been set
-	 * on the request, and these must be considered in the HTML generation.
-	 * </p>
-	 *
-	 * @see SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
-	 * @see DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
-	 *
-	 * TODO: Is SkipPageException acceptable at the view rendering stage?
-	 */
-	public abstract void doTheme(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		View view,
-		Page page
-	) throws ServletException, IOException, SkipPageException;
+  /**
+   * Renders the theme.
+   * <p>
+   * Both the {@link Serialization} and {@link Doctype} may have been set
+   * on the request, and these must be considered in the HTML generation.
+   * </p>
+   *
+   * @see SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
+   * @see DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
+   *
+   * TODO: Is SkipPageException acceptable at the view rendering stage?
+   */
+  public abstract void doTheme(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    View view,
+    Page page
+  ) throws ServletException, IOException, SkipPageException;
 }

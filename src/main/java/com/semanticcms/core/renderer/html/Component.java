@@ -38,29 +38,29 @@ import javax.servlet.http.HttpServletResponse;
 @FunctionalInterface
 public interface Component {
 
-	/**
-	 * <p>
-	 * Renders a component in the output stream.
-	 * </p>
-	 * <p>
-	 * This will be called for each of the component positions as the page
-	 * is rendered by the theme.  A component that does not apply to the given
-	 * view, page, or position should take no action and return quickly.
-	 * </p>
-	 *
-	 * @param view  The view that is currently being rendered.  May be {@code null} during error handling.
-	 * @param page  The page that is currently being rendered.  May be {@code null} during error handling.
-	 */
-	// TODO: Different methods for each position, with default no-ops.
-	//       No more "ComponentPosition".
-	//       Pass more specific *Content types rather than generic Document
-	void doComponent(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		DocumentEE document,
-		View view,
-		Page page,
-		ComponentPosition position
-	) throws ServletException, IOException;
+  /**
+   * <p>
+   * Renders a component in the output stream.
+   * </p>
+   * <p>
+   * This will be called for each of the component positions as the page
+   * is rendered by the theme.  A component that does not apply to the given
+   * view, page, or position should take no action and return quickly.
+   * </p>
+   *
+   * @param view  The view that is currently being rendered.  May be {@code null} during error handling.
+   * @param page  The page that is currently being rendered.  May be {@code null} during error handling.
+   */
+  // TODO: Different methods for each position, with default no-ops.
+  //       No more "ComponentPosition".
+  //       Pass more specific *Content types rather than generic Document
+  void doComponent(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    DocumentEE document,
+    View view,
+    Page page,
+    ComponentPosition position
+  ) throws ServletException, IOException;
 }

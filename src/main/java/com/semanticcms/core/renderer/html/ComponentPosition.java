@@ -28,27 +28,27 @@ package com.semanticcms.core.renderer.html;
  */
 public enum ComponentPosition {
 
-	/**
-	 * Components called just after the head opening tag.
-	 * These components are called in the order registered.
-	 */
-	HEAD_START,
+  /**
+   * Components called just after the head opening tag.
+   * These components are called in the order registered.
+   */
+  HEAD_START,
 
-	/**
-	 * Components called just before the head closing tag.
-	 * These components are called in the reverse order registered.
-	 */
-	HEAD_END,
+  /**
+   * Components called just before the head closing tag.
+   * These components are called in the reverse order registered.
+   */
+  HEAD_END,
 
-	/**
-	 * Components called just after the body opening tag.
-	 * These components are called in the order registered.
-	 */
-	BODY_START,
+  /**
+   * Components called just after the body opening tag.
+   * These components are called in the order registered.
+   */
+  BODY_START,
 
-	/**
-	 * Components called just before the body closing tag.
-	 * These components are called in the reverse order registered.
-	 */
-	BODY_END
+  /**
+   * Components called just before the body closing tag.
+   * These components are called in the reverse order registered.
+   */
+  BODY_END
 }

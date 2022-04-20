@@ -30,26 +30,28 @@ import javax.servlet.http.HttpServletRequest;
  */
 public final class Headers {
 
-	/** Make no instances. */
-	private Headers() {throw new AssertionError();}
+  /** Make no instances. */
+  private Headers() {
+    throw new AssertionError();
+  }
 
-	/**
-	 * A client may include this header to indicate it is in export mode.
-	 */
-	private static final String EXPORTING_HEADER = "X-com-semanticcms-core-renderer-html-exporting";
+  /**
+   * A client may include this header to indicate it is in export mode.
+   */
+  private static final String EXPORTING_HEADER = "X-com-semanticcms-core-renderer-html-exporting";
 
-	/**
-	 * The value to pass in the header.
-	 */
-	private static final String EXPORTING_HEADER_VALUE = "true";
+  /**
+   * The value to pass in the header.
+   */
+  private static final String EXPORTING_HEADER_VALUE = "true";
 
-	/**
-	 * Checks if the request is for an export.
-	 * <p>
-	 * TODO: Automatically disable auto-last-modified during export to only require a single header.
-	 * </p>
-	 */
-	public static boolean isExporting(HttpServletRequest request) {
-		return EXPORTING_HEADER_VALUE.equalsIgnoreCase(request.getHeader(EXPORTING_HEADER));
-	}
+  /**
+   * Checks if the request is for an export.
+   * <p>
+   * TODO: Automatically disable auto-last-modified during export to only require a single header.
+   * </p>
+   */
+  public static boolean isExporting(HttpServletRequest request) {
+    return EXPORTING_HEADER_VALUE.equalsIgnoreCase(request.getHeader(EXPORTING_HEADER));
+  }
 }

@@ -41,35 +41,37 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class HtmlRendererUtils {
 
-	/** Make no instances. */
-	private HtmlRendererUtils() {throw new AssertionError();}
+  /** Make no instances. */
+  private HtmlRendererUtils() {
+    throw new AssertionError();
+  }
 
-	/**
-	 * Gets all the parents of the given page that are not in missing books
-	 * and are applicable to the given view.
-	 *
-	 * @return  The filtered set of parents, in the order declared by the page.
-	 */
-	public static Set<Page> getApplicableParents(
-		ServletContext servletContext,
-		HttpServletRequest request,
-		HttpServletResponse response,
-		View view,
-		Page page
-	) throws ServletException, IOException {
-		Collection<Page> parents = CapturePage.capturePages(
-			servletContext,
-			request,
-			response,
-			PageUtils.filterNotMissingBook(servletContext, page.getParentRefs()),
-			CaptureLevel.META // TODO: View provide capture level required for isApplicable check, might be PAGE or (null for none) for some views.
-		).values();
-		Set<Page> applicableParents = AoCollections.newLinkedHashSet(parents.size());
-		for(Page parent : parents) {
-			if(view.isApplicable(servletContext, request, response, parent)) {
-				applicableParents.add(parent);
-			}
-		}
-		return AoCollections.optimalUnmodifiableSet(applicableParents);
-	}
+  /**
+   * Gets all the parents of the given page that are not in missing books
+   * and are applicable to the given view.
+   *
+   * @return  The filtered set of parents, in the order declared by the page.
+   */
+  public static Set<Page> getApplicableParents(
+    ServletContext servletContext,
+    HttpServletRequest request,
+    HttpServletResponse response,
+    View view,
+    Page page
+  ) throws ServletException, IOException {
+    Collection<Page> parents = CapturePage.capturePages(
+      servletContext,
+      request,
+      response,
+      PageUtils.filterNotMissingBook(servletContext, page.getParentRefs()),
+      CaptureLevel.META // TODO: View provide capture level required for isApplicable check, might be PAGE or (null for none) for some views.
+    ).values();
+    Set<Page> applicableParents = AoCollections.newLinkedHashSet(parents.size());
+    for (Page parent : parents) {
+      if (view.isApplicable(servletContext, request, response, parent)) {
+        applicableParents.add(parent);
+      }
+    }
+    return AoCollections.optimalUnmodifiableSet(applicableParents);
+  }
 }
