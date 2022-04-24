@@ -53,18 +53,18 @@ public final class HtmlRendererUtils {
    * @return  The filtered set of parents, in the order declared by the page.
    */
   public static Set<Page> getApplicableParents(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    View view,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      View view,
+      Page page
   ) throws ServletException, IOException {
     Collection<Page> parents = CapturePage.capturePages(
-      servletContext,
-      request,
-      response,
-      PageUtils.filterNotMissingBook(servletContext, page.getParentRefs()),
-      CaptureLevel.META // TODO: View provide capture level required for isApplicable check, might be PAGE or (null for none) for some views.
+        servletContext,
+        request,
+        response,
+        PageUtils.filterNotMissingBook(servletContext, page.getParentRefs()),
+        CaptureLevel.META // TODO: View provide capture level required for isApplicable check, might be PAGE or (null for none) for some views.
     ).values();
     Set<Page> applicableParents = AoCollections.newLinkedHashSet(parents.size());
     for (Page parent : parents) {

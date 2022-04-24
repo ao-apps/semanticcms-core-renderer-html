@@ -55,12 +55,12 @@ public interface Component {
   //       No more "ComponentPosition".
   //       Pass more specific *Content types rather than generic Document
   void doComponent(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    DocumentEE document,
-    View view,
-    Page page,
-    ComponentPosition position
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      DocumentEE document,
+      View view,
+      Page page,
+      ComponentPosition position
   ) throws ServletException, IOException;
 }

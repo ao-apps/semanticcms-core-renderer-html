@@ -68,22 +68,22 @@ public class PageIndex {
    * Captures the root with META capture level and all children as PAGE.
    */
   public static PageIndex getPageIndex(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    PageRef rootPageRef
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      PageRef rootPageRef
   ) throws ServletException, IOException {
     return new PageIndex(
-      servletContext,
-      request,
-      response,
-      CapturePage.capturePage(
         servletContext,
         request,
         response,
-        rootPageRef,
-        CaptureLevel.META
-      )
+        CapturePage.capturePage(
+            servletContext,
+            request,
+            response,
+            rootPageRef,
+            CaptureLevel.META
+        )
     );
   }
 
@@ -100,16 +100,16 @@ public class PageIndex {
     if (index != null) {
       String indexPlusOne = Integer.toString(index + 1);
       StringBuilder out = new StringBuilder(
-        4 // "page"
-        + indexPlusOne.length()
-        + (
-          id == null || id.isEmpty()
-          ? 0
-          : (
-            1 // '-'
-            + id.length()
+          4 // "page"
+              + indexPlusOne.length()
+              + (
+              id == null || id.isEmpty()
+                  ? 0
+                  : (
+                  1 // '-'
+                      + id.length()
+              )
           )
-        )
       );
       out.append("page");
       out.append(indexPlusOne);
@@ -130,10 +130,10 @@ public class PageIndex {
    * @param  id  optional, id not added when null or empty
    */
   public static String getRefId(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    PageIndex pageIndex,
-    String id
+      ServletContext servletContext,
+      HttpServletRequest request,
+      PageIndex pageIndex,
+      String id
   ) throws ServletException {
     // No page index
     if (pageIndex == null) {
@@ -160,15 +160,15 @@ public class PageIndex {
    * @param  id  optional, id not added when null or empty
    */
   public static String getRefId(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    String id
+      ServletContext servletContext,
+      HttpServletRequest request,
+      String id
   ) throws ServletException {
     return getRefId(
-      servletContext,
-      request,
-      getCurrentPageIndex(request),
-      id
+        servletContext,
+        request,
+        getCurrentPageIndex(request),
+        id
     );
   }
 
@@ -181,9 +181,9 @@ public class PageIndex {
    * @see  #appendIdInPage(com.semanticcms.core.renderer.html.PageIndex, com.semanticcms.core.model.Page, java.lang.String, java.lang.Appendable)
    */
   public static String getRefIdInPage(
-    PageIndex pageIndex,
-    Page page,
-    String id
+      PageIndex pageIndex,
+      Page page,
+      String id
   ) {
     // No page index
     if (pageIndex == null) {
@@ -212,9 +212,9 @@ public class PageIndex {
    * @see  #appendIdInPage(com.semanticcms.core.renderer.html.PageIndex, com.semanticcms.core.model.Page, java.lang.String, java.lang.Appendable)
    */
   public static String getRefIdInPage(
-    HttpServletRequest request,
-    Page page,
-    String id
+      HttpServletRequest request,
+      Page page,
+      String id
   ) {
     return getRefIdInPage(getCurrentPageIndex(request), page, id);
   }
@@ -250,9 +250,9 @@ public class PageIndex {
   public static void appendIdInPage(PageIndex pageIndex, Page page, String id, Appendable out) throws IOException {
     if (pageIndex != null && page != null) {
       appendIdInPage(
-        pageIndex.getPageIndex(page.getPageRef()),
-        id,
-        out
+          pageIndex.getPageIndex(page.getPageRef()),
+          id,
+          out
       );
     } else {
       if (id != null && !id.isEmpty()) {
@@ -266,23 +266,23 @@ public class PageIndex {
   private final Map<PageRef, Integer> pageIndexes;
 
   private PageIndex(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page rootPage
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page rootPage
   ) throws ServletException, IOException {
     this.rootPage = rootPage;
     this.pageList = PageDags.convertPageDagToList(
-      servletContext,
-      request,
-      response,
-      rootPage,
-      CaptureLevel.PAGE
+        servletContext,
+        request,
+        response,
+        rootPage,
+        CaptureLevel.PAGE
     );
     int size = pageList.size();
     // Index pages
     Map<PageRef, Integer> newPageIndexes = AoCollections.newHashMap(size);
-    for (int i=0; i<size; i++) {
+    for (int i = 0; i < size; i++) {
       newPageIndexes.put(pageList.get(i).getPageRef(), i);
     }
     this.pageIndexes = Collections.unmodifiableMap(newPageIndexes);

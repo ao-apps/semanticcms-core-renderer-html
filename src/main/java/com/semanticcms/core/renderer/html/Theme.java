@@ -47,7 +47,7 @@ public abstract class Theme {
    * The request-scope attribute that will store the currently active theme.
    */
   private static final ScopeEE.Request.Attribute<Theme> REQUEST_ATTRIBUTE =
-    ScopeEE.REQUEST.attribute(Theme.class.getName());
+      ScopeEE.REQUEST.attribute(Theme.class.getName());
 
   /**
    * Gets the current theme on the given request or {@code null} when none active.
@@ -71,7 +71,7 @@ public abstract class Theme {
     if (!(obj instanceof Theme)) {
       return false;
     }
-    Theme o = (Theme)obj;
+    Theme o = (Theme) obj;
     return getName().equals(o.getName());
   }
 
@@ -132,10 +132,10 @@ public abstract class Theme {
    * TODO: Is SkipPageException acceptable at the view rendering stage?
    */
   public abstract void doTheme(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    View view,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      View view,
+      Page page
   ) throws ServletException, IOException, SkipPageException;
 }

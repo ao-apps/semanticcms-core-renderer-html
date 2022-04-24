@@ -87,7 +87,7 @@ public class HtmlRenderer implements Renderer {
   private static final String APPLICATION_ATTRIBUTE_NAME = "htmlRenderer";
 
   public static final ScopeEE.Application.Attribute<HtmlRenderer> APPLICATION_ATTRIBUTE =
-    ScopeEE.APPLICATION.attribute(APPLICATION_ATTRIBUTE_NAME);
+      ScopeEE.APPLICATION.attribute(APPLICATION_ATTRIBUTE_NAME);
 
   /**
    * Gets the {@link HtmlRenderer} instance, creating it if necessary.
@@ -119,7 +119,9 @@ public class HtmlRenderer implements Renderer {
    */
   public static final String VIEW_PARAM = "view";
 
-  private static class ViewsLock {/* Empty lock class to help heap profile */}
+  private static class ViewsLock {
+    // Empty lock class to help heap profile
+  }
   private final ViewsLock viewsLock = new ViewsLock();
 
   /**
@@ -200,8 +202,8 @@ public class HtmlRenderer implements Renderer {
       // Order the components by classname, just to have a consistent output
       // independent of the order components happened to be registered.
       Collections.sort(
-        components,
-        (o1, o2) -> o1.getClass().getName().compareTo(o2.getClass().getName())
+          components,
+          (o1, o2) -> o1.getClass().getName().compareTo(o2.getClass().getName())
       );
     }
   }
@@ -281,10 +283,10 @@ public class HtmlRenderer implements Renderer {
       if (existingSrc != null) {
         if (!src.equals(existingSrc)) {
           throw new IllegalStateException(
-            "Script already registered but with a different src:"
-            + " name=" + name
-            + " src=" + src
-            + " existingSrc=" + existingSrc
+              "Script already registered but with a different src:"
+                  + " name=" + name
+                  + " src=" + src
+                  + " existingSrc=" + existingSrc
           );
         }
       } else {
@@ -328,6 +330,7 @@ public class HtmlRenderer implements Renderer {
       }
     }
   }
+
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc="Links to Elements">
@@ -367,7 +370,7 @@ public class HtmlRenderer implements Renderer {
     synchronized (linkCssClassResolverByElementType) {
       while (true) {
         @SuppressWarnings("unchecked")
-        LinkCssClassResolver<? super E> linkCssClassResolver = (LinkCssClassResolver<? super E>)linkCssClassResolverByElementType.get(elementType);
+        LinkCssClassResolver<? super E> linkCssClassResolver = (LinkCssClassResolver<? super E>) linkCssClassResolverByElementType.get(elementType);
         if (linkCssClassResolver != null) {
           String linkCssClass = linkCssClassResolver.getCssLinkClass(element);
           if (linkCssClass != null) {
@@ -388,8 +391,8 @@ public class HtmlRenderer implements Renderer {
    * @throws  IllegalStateException  if the element type is already registered.
    */
   public <E extends com.semanticcms.core.model.Element> void addLinkCssClassResolver(
-    Class<E> elementType,
-    LinkCssClassResolver<? super E> cssLinkClassResolver
+      Class<E> elementType,
+      LinkCssClassResolver<? super E> cssLinkClassResolver
   ) throws IllegalStateException {
     synchronized (linkCssClassResolverByElementType) {
       if (linkCssClassResolverByElementType.containsKey(elementType)) {
@@ -408,11 +411,12 @@ public class HtmlRenderer implements Renderer {
    */
   // TODO: Take a set of Group.Name activations, too
   public <E extends com.semanticcms.core.model.Element> void addLinkCssClass(
-    Class<E> elementType,
-    String cssLinkClass
+      Class<E> elementType,
+      String cssLinkClass
   ) throws IllegalStateException {
     addLinkCssClassResolver(elementType, element -> cssLinkClass);
   }
+
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc="Lists of Nodes">
@@ -452,7 +456,7 @@ public class HtmlRenderer implements Renderer {
     synchronized (listItemCssClassResolverByNodeType) {
       while (true) {
         @SuppressWarnings("unchecked")
-        ListItemCssClassResolver<? super N> listItemCssClassResolver = (ListItemCssClassResolver<? super N>)listItemCssClassResolverByNodeType.get(nodeType);
+        ListItemCssClassResolver<? super N> listItemCssClassResolver = (ListItemCssClassResolver<? super N>) listItemCssClassResolverByNodeType.get(nodeType);
         if (listItemCssClassResolver != null) {
           String listItemCssClass = listItemCssClassResolver.getListItemCssClass(node);
           if (listItemCssClass != null) {
@@ -473,8 +477,8 @@ public class HtmlRenderer implements Renderer {
    * @throws  IllegalStateException  if the node type is already registered.
    */
   public <N extends com.semanticcms.core.model.Node> void addListItemCssClassResolver(
-    Class<N> nodeType,
-    ListItemCssClassResolver<? super N> listItemCssClassResolver
+      Class<N> nodeType,
+      ListItemCssClassResolver<? super N> listItemCssClassResolver
   ) throws IllegalStateException {
     synchronized (listItemCssClassResolverByNodeType) {
       if (listItemCssClassResolverByNodeType.containsKey(nodeType)) {
@@ -493,11 +497,12 @@ public class HtmlRenderer implements Renderer {
    */
   // TODO: Take a set of Group.Name activations, too
   public <N extends com.semanticcms.core.model.Node> void addListItemCssClass(
-    Class<N> nodeType,
-    String listItemCssClass
+      Class<N> nodeType,
+      String listItemCssClass
   ) throws IllegalStateException {
     addListItemCssClassResolver(nodeType, node -> listItemCssClass);
   }
+
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc="Renderer">
@@ -532,10 +537,10 @@ public class HtmlRenderer implements Renderer {
 
       @Override
       public void doRenderer(
-        Page page,
-        HttpServletRequest request,
-        HttpServletResponse response,
-        Writer out // TODO: Pass "out" to theme.doTheme()?
+          Page page,
+          HttpServletRequest request,
+          HttpServletResponse response,
+          Writer out // TODO: Pass "out" to theme.doTheme()?
       ) throws IOException, ServletException, SkipPageException {
         // Resolve the view
         HtmlRenderer htmlRenderer = HtmlRenderer.getInstance(servletContext);
@@ -600,22 +605,22 @@ public class HtmlRenderer implements Renderer {
 
           // Configure the theme resources
           theme.configureResources(
-            servletContext,
-            request,
-            response,
-            view,
-            page,
-            RegistryEE.Request.get(servletContext, request)
+              servletContext,
+              request,
+              response,
+              view,
+              page,
+              RegistryEE.Request.get(servletContext, request)
           );
 
           // Configure the view resources
           view.configureResources(
-            servletContext,
-            request,
-            response,
-            theme,
-            page,
-            RegistryEE.Request.get(servletContext, request)
+              servletContext,
+              request,
+              response,
+              theme,
+              page,
+              RegistryEE.Request.get(servletContext, request)
           );
 
           // TODO: Configure the page resources here or within view?
