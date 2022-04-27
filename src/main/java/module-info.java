@@ -44,4 +44,4 @@ module com.semanticcms.core.renderer.html {
   requires com.semanticcms.core.pages.local; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId>
   requires com.semanticcms.core.renderer; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer</artifactId>
   requires com.semanticcms.core.renderer.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer-servlet</artifactId>
-}
+} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
