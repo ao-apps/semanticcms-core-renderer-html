@@ -55,12 +55,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 
 /**
- * TODO: Consider custom EL resolver for this variable: http://stackoverflow.com/questions/5016965/how-to-add-a-custom-variableresolver-in-pure-jsp
+ * The HTML Renderer application context.
+ * <p>
+ * TODO: Consider custom EL resolver for this variable.
+ * http://stackoverflow.com/questions/5016965/how-to-add-a-custom-variableresolver-in-pure-jsp
+ * </p>
  */
 public class HtmlRenderer implements Renderer {
 
   // <editor-fold defaultstate="collapsed" desc="Singleton Instance (per application)">
 
+  /**
+   * Registers the {@link HtmlRenderer} with {@link SemanticCMS} and exposes the {@link HtmlRenderer} as an
+   * application-scope variable "{@link #APPLICATION_ATTRIBUTE_NAME}".
+   */
   @WebListener("Registers the HtmlRenderer with SemanticCMS and exposes the HtmlRenderer as an application-scope variable \"" + APPLICATION_ATTRIBUTE_NAME + "\".")
   public static class Initializer implements ServletContextListener {
 
@@ -94,7 +102,7 @@ public class HtmlRenderer implements Renderer {
    */
   public static HtmlRenderer getInstance(ServletContext servletContext) {
     // TODO: Support custom implementations via context-param?
-    return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new HtmlRenderer(servletContext));
+    return APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(name -> new HtmlRenderer(servletContext));
   }
 
   private final ServletContext servletContext;
@@ -114,14 +122,16 @@ public class HtmlRenderer implements Renderer {
   // <editor-fold defaultstate="collapsed" desc="Views">
   /**
    * The parameter name used for views.
-   *
+   * <p>
    * TODO: Move to new Link type of Element in core-model?
+   * </p>
    */
   public static final String VIEW_PARAM = "view";
 
   private static class ViewsLock {
     // Empty lock class to help heap profile
   }
+
   private final ViewsLock viewsLock = new ViewsLock();
 
   /**
@@ -545,50 +555,50 @@ public class HtmlRenderer implements Renderer {
         // Resolve the view
         HtmlRenderer htmlRenderer = HtmlRenderer.getInstance(servletContext);
         View view;
-        {
-          String viewName = request.getParameter(VIEW_PARAM);
-          Map<String, View> viewsMap = htmlRenderer.getViewsByName();
-          if (viewName == null) {
-            view = null;
-          } else {
-            if (Link.DEFAULT_VIEW_NAME.equals(viewName)) {
-              throw new ServletException(VIEW_PARAM + " paramater may not be sent for default view: " + viewName);
+          {
+            String viewName = request.getParameter(VIEW_PARAM);
+            Map<String, View> viewsMap = htmlRenderer.getViewsByName();
+            if (viewName == null) {
+              view = null;
+            } else {
+              if (Link.DEFAULT_VIEW_NAME.equals(viewName)) {
+                throw new ServletException(VIEW_PARAM + " paramater may not be sent for default view: " + viewName);
+              }
+              view = viewsMap.get(viewName);
             }
-            view = viewsMap.get(viewName);
-          }
-          if (view == null) {
-            // Find default
-            view = viewsMap.get(Link.DEFAULT_VIEW_NAME);
             if (view == null) {
-              throw new ServletException("Default view not found: " + Link.DEFAULT_VIEW_NAME);
+              // Find default
+              view = viewsMap.get(Link.DEFAULT_VIEW_NAME);
+              if (view == null) {
+                throw new ServletException("Default view not found: " + Link.DEFAULT_VIEW_NAME);
+              }
             }
           }
-        }
 
         // Find the theme
         Theme theme = null;
-        {
-          // Currently just picks the first non-default theme registered, the uses default
-          Theme defaultTheme = null;
-          for (Theme t : htmlRenderer.getThemes().values()) {
-            if (t.isDefault()) {
-              assert defaultTheme == null : "More than one default theme registered";
-              defaultTheme = t;
-            } else {
-              // Use first non-default
-              theme = t;
-              break;
+          {
+            // Currently just picks the first non-default theme registered, the uses default
+            Theme defaultTheme = null;
+            for (Theme t : htmlRenderer.getThemes().values()) {
+              if (t.isDefault()) {
+                assert defaultTheme == null : "More than one default theme registered";
+                defaultTheme = t;
+              } else {
+                // Use first non-default
+                theme = t;
+                break;
+              }
             }
-          }
-          if (theme == null) {
-            // Use default
-            if (defaultTheme == null) {
-              throw new ServletException("No themes registered");
+            if (theme == null) {
+              // Use default
+              if (defaultTheme == null) {
+                throw new ServletException("No themes registered");
+              }
+              theme = defaultTheme;
             }
-            theme = defaultTheme;
+            assert theme != null;
           }
-          assert theme != null;
-        }
 
         // Clear the output buffer
         response.resetBuffer();

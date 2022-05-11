@@ -25,19 +25,20 @@ package com.semanticcms.core.renderer.html;
 
 import static com.aoapps.encoding.TextInXhtmlAttributeEncoder.encodeTextInXhtmlAttribute;
 import static com.aoapps.encoding.TextInXhtmlEncoder.encodeTextInXhtml;
+import static com.aoapps.lang.Strings.nullIfEmpty;
+import static com.aoapps.taglib.AttributeUtils.resolveValue;
+
 import com.aoapps.html.any.AnyA;
 import com.aoapps.html.any.AnyA_c;
 import com.aoapps.html.any.AnySPAN;
 import com.aoapps.html.any.AnySPAN_c;
 import com.aoapps.html.any.AnyUnion_Palpable_Phrasing;
-import static com.aoapps.lang.Strings.nullIfEmpty;
 import com.aoapps.lang.validation.ValidationException;
 import com.aoapps.net.DomainName;
 import com.aoapps.net.Path;
 import com.aoapps.net.URIEncoder;
 import com.aoapps.net.URIParameters;
 import com.aoapps.servlet.http.HttpServletUtil;
-import static com.aoapps.taglib.AttributeUtils.resolveValue;
 import com.semanticcms.core.controller.Book;
 import com.semanticcms.core.controller.CapturePage;
 import com.semanticcms.core.controller.PageRefResolver;
@@ -91,8 +92,7 @@ public final class LinkRenderer {
         .append(bookRef.getDomain().toString())
         .append(':')
         .append(bookRef.getPrefix())
-        .append(pageRef.getPath().toString())
-    ;
+        .append(pageRef.getPath().toString());
     if (targetId != null) {
       out.append('#').append(targetId);
     }
@@ -429,7 +429,7 @@ public final class LinkRenderer {
       }
 
       // Find the view
-      final SemanticCMS semanticCMS = SemanticCMS.getInstance(servletContext);
+      final SemanticCMS semanticCms = SemanticCMS.getInstance(servletContext);
       final HtmlRenderer htmlRenderer = HtmlRenderer.getInstance(servletContext);
       final View view = htmlRenderer.getViewsByName().get(viewName);
       if (view == null) {
@@ -439,7 +439,7 @@ public final class LinkRenderer {
 
       // Capture the page
       final BookRef targetBookRef = targetPageRef.getBookRef();
-      final Book targetBook = semanticCMS.getBook(targetBookRef);
+      final Book targetBook = semanticCms.getBook(targetBookRef);
       Page targetPage;
       if (!targetBook.isAccessible()) {
         // Book is not accessible
@@ -576,7 +576,7 @@ public final class LinkRenderer {
             }
             if (index != null) {
               span__.sup__any(sup -> sup
-                      .text('[').text(index + 1).text(']')
+                  .text('[').text(index + 1).text(']')
               );
             }
           } else {
@@ -584,23 +584,23 @@ public final class LinkRenderer {
           }
           // TODO: Support multi-domain
           span__.sup__any(sup -> sup
-                  .a()
-                  .href(
-                      HttpServletUtil.buildURL(
-                          request,
-                          response,
-                          href.toString(),
-                          params,
-                          absolute,
-                          canonical
-                      )
+              .a()
+              .href(
+                  HttpServletUtil.buildURL(
+                      request,
+                      response,
+                      href.toString(),
+                      params,
+                      absolute,
+                      canonical
                   )
-                  .rel(nofollow ? AnyA.Rel.NOFOLLOW : null)
-                  .__(
-                      // TODO: Make [link] not copied during select/copy/paste, to not corrupt semantic meaning (and make more useful in copy/pasted code and scripts)?
-                      // TODO: https://stackoverflow.com/questions/3271231/how-to-exclude-portions-of-text-when-copying
-                      "[link]"
-                  )
+              )
+              .rel(nofollow ? AnyA.Rel.NOFOLLOW : null)
+              .__(
+                  // TODO: Make [link] not copied during select/copy/paste, to not corrupt semantic meaning (and make more useful in copy/pasted code and scripts)?
+                  // TODO: https://stackoverflow.com/questions/3271231/how-to-exclude-portions-of-text-when-copying
+                  "[link]"
+              )
           );
         }
       } else {
@@ -635,7 +635,7 @@ public final class LinkRenderer {
             }
             if (index != null) {
               a_c.pc().sup__any(sup -> sup
-                      .text('[').text(index + 1).text(']')
+                  .text('[').text(index + 1).text(']')
               );
             }
           } else {

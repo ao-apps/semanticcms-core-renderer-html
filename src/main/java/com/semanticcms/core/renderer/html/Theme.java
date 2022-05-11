@@ -84,6 +84,8 @@ public abstract class Theme {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * @see  #getDisplay()
    */
   @Override
@@ -125,11 +127,12 @@ public abstract class Theme {
    * Both the {@link Serialization} and {@link Doctype} may have been set
    * on the request, and these must be considered in the HTML generation.
    * </p>
+   * <p>
+   * TODO: Is SkipPageException acceptable at the view rendering stage?
+   * </p>
    *
    * @see SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
    * @see DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
-   *
-   * TODO: Is SkipPageException acceptable at the view rendering stage?
    */
   public abstract void doTheme(
       ServletContext servletContext,

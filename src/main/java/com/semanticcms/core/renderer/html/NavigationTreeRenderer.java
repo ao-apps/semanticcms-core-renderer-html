@@ -23,6 +23,9 @@
 
 package com.semanticcms.core.renderer.html;
 
+import static com.aoapps.lang.Strings.nullIfEmpty;
+import static com.aoapps.taglib.AttributeUtils.resolveValue;
+
 import com.aoapps.html.any.AnyA;
 import com.aoapps.html.any.AnyLI;
 import com.aoapps.html.any.AnyLI_c;
@@ -30,13 +33,11 @@ import com.aoapps.html.any.AnyPalpableContent;
 import com.aoapps.html.any.AnyUL_c;
 import com.aoapps.html.any.AnyUnion_Palpable_Phrasing;
 import com.aoapps.lang.Strings;
-import static com.aoapps.lang.Strings.nullIfEmpty;
 import com.aoapps.lang.validation.ValidationException;
 import com.aoapps.net.DomainName;
 import com.aoapps.net.Path;
 import com.aoapps.net.URIDecoder;
 import com.aoapps.net.URIEncoder;
-import static com.aoapps.taglib.AttributeUtils.resolveValue;
 import com.semanticcms.core.controller.CapturePage;
 import com.semanticcms.core.controller.PageRefResolver;
 import com.semanticcms.core.controller.PageUtils;
@@ -125,11 +126,11 @@ public final class NavigationTreeRenderer {
       }
     }
     if (childRefs != null) {
-      SemanticCMS semanticCMS = SemanticCMS.getInstance(servletContext);
+      SemanticCMS semanticCms = SemanticCMS.getInstance(servletContext);
       for (ChildRef childRef : childRefs) {
         PageRef childPageRef = childRef.getPageRef();
         // Child is in an accessible book
-        if (semanticCMS.getBook(childPageRef.getBookRef()).isAccessible()) {
+        if (semanticCms.getBook(childPageRef.getBookRef()).isAccessible()) {
           Page childPage = CapturePage.capturePage(servletContext, request, response, childPageRef, includeElements || metaCapture ? CaptureLevel.META : CaptureLevel.PAGE);
           childNodes.add(childPage);
         }
@@ -142,7 +143,7 @@ public final class NavigationTreeRenderer {
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
-      SemanticCMS semanticCMS,
+      SemanticCMS semanticCms,
       PageRef linksTo,
       Set<Node> nodesWithLinks,
       Set<Node> nodesWithChildLinks,
@@ -158,7 +159,7 @@ public final class NavigationTreeRenderer {
       for (Element childElem : node.getChildElements()) {
         if (
             !childElem.isHidden()
-                && findLinks(servletContext, request, response, semanticCMS, linksTo, nodesWithLinks, nodesWithChildLinks, childElem, includeElements)
+                && findLinks(servletContext, request, response, semanticCms, linksTo, nodesWithLinks, nodesWithChildLinks, childElem, includeElements)
         ) {
           hasChildLink = true;
         }
@@ -181,9 +182,9 @@ public final class NavigationTreeRenderer {
       for (ChildRef childRef : ((Page) node).getChildRefs()) {
         PageRef childPageRef = childRef.getPageRef();
         // Child is in an accessible book
-        if (semanticCMS.getBook(childPageRef.getBookRef()).isAccessible()) {
+        if (semanticCms.getBook(childPageRef.getBookRef()).isAccessible()) {
           Page child = CapturePage.capturePage(servletContext, request, response, childPageRef, CaptureLevel.META);
-          if (findLinks(servletContext, request, response, semanticCMS, linksTo, nodesWithLinks, nodesWithChildLinks, child, includeElements)) {
+          if (findLinks(servletContext, request, response, semanticCms, linksTo, nodesWithLinks, nodesWithChildLinks, child, includeElements)) {
             hasChildLink = true;
           }
         }
@@ -527,7 +528,7 @@ public final class NavigationTreeRenderer {
       AnyLI<?, ?, ?, ?, ?> li = ul__.li();
       if (yuiConfig) {
         li.attribute("yuiConfig", attr -> attr
-                .append("{\"data\":\"").append(encodeHexData(servletPath)).append("\"}")
+            .append("{\"data\":\"").append(encodeHexData(servletPath)).append("\"}")
         );
       }
       li.clazz(
@@ -591,7 +592,7 @@ public final class NavigationTreeRenderer {
         }
         if (index != null) {
           a__.sup__any(sup -> sup
-                  .text('[').text(index + 1).text(']')
+              .text('[').text(index + 1).text(']')
           );
         }
       });

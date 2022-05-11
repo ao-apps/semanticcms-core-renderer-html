@@ -90,7 +90,7 @@ public final class ElementFilterTree {
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
-      SemanticCMS semanticCMS,
+      SemanticCMS semanticCms,
       ElementFilter elementFilter,
       Set<Node> nodesWithMatches,
       Node node,
@@ -112,7 +112,7 @@ public final class ElementFilterTree {
     }
     if (includeElements) {
       for (Element childElem : childElements) {
-        if (findElements(servletContext, request, response, semanticCMS, elementFilter, nodesWithMatches, childElem, includeElements)) {
+        if (findElements(servletContext, request, response, semanticCms, elementFilter, nodesWithMatches, childElem, includeElements)) {
           hasMatch = true;
         }
       }
@@ -133,9 +133,9 @@ public final class ElementFilterTree {
       for (ChildRef childRef : ((Page) node).getChildRefs()) {
         PageRef childPageRef = childRef.getPageRef();
         // Child is in an accessible book
-        if (semanticCMS.getBook(childPageRef.getBookRef()).isAccessible()) {
+        if (semanticCms.getBook(childPageRef.getBookRef()).isAccessible()) {
           Page child = CapturePage.capturePage(servletContext, request, response, childPageRef, CaptureLevel.META);
-          if (findElements(servletContext, request, response, semanticCMS, elementFilter, nodesWithMatches, child, includeElements)) {
+          if (findElements(servletContext, request, response, semanticCms, elementFilter, nodesWithMatches, child, includeElements)) {
             hasMatch = true;
           }
         }
@@ -206,7 +206,7 @@ public final class ElementFilterTree {
         a.text(node);
         if (index != null) {
           a.sup__any(sup -> sup
-                  .text('[').text(index + 1).text(']')
+              .text('[').text(index + 1).text(']')
           );
         }
       });
