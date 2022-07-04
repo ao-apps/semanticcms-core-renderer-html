@@ -47,7 +47,7 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
 
-  <name>SemanticCMS Core Renderer HTML²</name>
+  <name>SemanticCMS Core Renderer HTML</name>
   <url>https://semanticcms.com/core/renderer/html/</url>
   <description>SemanticCMS pages rendered as HTML in a Servlet environment.</description>
   <inceptionYear>2017</inceptionYear>
