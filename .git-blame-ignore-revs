@@ -8,11 +8,25 @@
 #
 # $ git config blame.ignoreRevsFile .git-blame-ignore-revs
 
+############################
+# semanticcms-core-servlet #
+############################
+
+# PageContext moved to new semanticcms-core-pages-local module
+2daba56c045179a7675097204ab3f8bbbd348883
+
+# Converted remaining four-space indents to our standard tab indent.
+66e7073c6112bc6d1d60e0688c603e72e4bff432
+
+##################################
+# semanticcms-core-renderer-html #
+##################################
+
 # Significant manual code formatting clean-up…
-64960a890fb02a6c8a42cfff4ca30892315ca0ea
+78798c719078fc02b812e32722567ee97c66c338
 
 # Performed automatic source code clean-up with rewrite-maven-plugin
-4e1a999161922b276d7d0da58682341c9b1b42bd
+e7a1bf02829cba2c8f5d5f539d8187577295f036
 
 # Performed manual checkstyle clean-up
-f5495bb42252085837c022942659736a7726443d
+e8800bcbf75c549aa9686d30ec93ee92289cb0bc
