@@ -8,13 +8,10 @@
 #
 # $ git config blame.ignoreRevsFile .git-blame-ignore-revs
 
-############################
-# semanticcms-core-servlet #
-############################
-
 # Significant manual code formatting clean-up…
 5d100e22b532557b26bcfeed25598a3d46f9b7b0
 9d3b5f2711719a4d745105ae80a615d8e5bdacae
+78798c719078fc02b812e32722567ee97c66c338
 
 # Removed trailing whitespace
 551e214861711039830c92d0a0e53cb7131e8f9f
@@ -36,6 +33,7 @@ cd90779c49b04f315b0553e14be8e8d04c5b25f6
 # Performed automatic source code clean-up with rewrite-maven-plugin
 e91d75031c20d3e95d66f9a2e5238cc911616055
 51e52c70612575b227df6c9efa05fc096d9acc00
+e7a1bf02829cba2c8f5d5f539d8187577295f036
 
 # Performed automatic clean-up with org.openrewrite.java.cleanup.Cleanup
 200da68805dc1a22a976eed9177fd8d568a446b5
@@ -44,18 +42,6 @@ e91d75031c20d3e95d66f9a2e5238cc911616055
 # Performed manual checkstyle clean-up
 38cfeea43e41c41a61580e640c11491172ae6a95
 d0ae5d42d966812468e3a4a9029928a38dfb7805
-
-##################################
-# semanticcms-core-renderer-html #
-##################################
-
-# Significant manual code formatting clean-up…
-78798c719078fc02b812e32722567ee97c66c338
-
-# Performed automatic source code clean-up with rewrite-maven-plugin
-e7a1bf02829cba2c8f5d5f539d8187577295f036
-
-# Performed manual checkstyle clean-up
 e8800bcbf75c549aa9686d30ec93ee92289cb0bc
 
 # Added all whitespace-only commits to .git-blame-ignore-revs
