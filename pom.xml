@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
-Copyright (C) 2017, 2018, 2019, 2020, 2021, 2022  AO Industries, Inc.
+Copyright (C) 2017, 2018, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -119,8 +119,8 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
         <configuration>
           <usedDependencies>
-            <!-- Direct -->
-            <dependency>com.aoapps:ao-encoding-servlet</dependency><!-- Required for module-info.java -->
+            <!-- Javadoc-only -->
+            <dependency>com.aoapps:ao-encoding-servlet</dependency>
           </usedDependencies>
         </configuration>
       </plugin>
@@ -469,6 +469,8 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
     </dependency>
     <dependency>
       <groupId>com.aoapps</groupId><artifactId>ao-encoding-servlet</artifactId>
+      <!-- Javadoc-only -->
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-any</artifactId>

@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -25,8 +25,6 @@ package com.semanticcms.core.renderer.html;
 
 import com.aoapps.encoding.Doctype;
 import com.aoapps.encoding.Serialization;
-import com.aoapps.encoding.servlet.DoctypeEE;
-import com.aoapps.encoding.servlet.SerializationEE;
 import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.web.resources.registry.Registry;
 import com.semanticcms.core.model.Page;
@@ -131,8 +129,8 @@ public abstract class Theme {
    * TODO: Is SkipPageException acceptable at the view rendering stage?
    * </p>
    *
-   * @see SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
-   * @see DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
+   * @see com.aoapps.encoding.servlet.SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
+   * @see com.aoapps.encoding.servlet.DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
    */
   public abstract void doTheme(
       ServletContext servletContext,
