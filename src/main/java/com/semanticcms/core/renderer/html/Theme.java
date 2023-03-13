@@ -32,6 +32,7 @@ import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
@@ -126,7 +127,8 @@ public abstract class Theme {
    * on the request, and these must be considered in the HTML generation.
    * </p>
    * <p>
-   * TODO: Is SkipPageException acceptable at the view rendering stage?
+   * When {@link ServletResponse#isCommitted() response is committed}, this theme method is never called and
+   * {@link SkipPageException} is thrown instead.
    * </p>
    *
    * @see com.aoapps.encoding.servlet.SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
