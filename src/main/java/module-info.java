@@ -44,4 +44,6 @@ module com.semanticcms.core.renderer.html {
   requires com.semanticcms.core.pages.local; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId>
   requires com.semanticcms.core.renderer; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer</artifactId>
   requires com.semanticcms.core.renderer.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer-servlet</artifactId>
+  // Java SE
+  requires java.logging;
 }
