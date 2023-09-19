@@ -40,6 +40,7 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
 / <a target="${javadoc.target}" href="https://semanticcms.com/core/">Core</a>
 / <a target="${javadoc.target}" href="https://semanticcms.com/core/renderer/">Renderer</a>
 / <a target="${javadoc.target}" href="${project.url}">HTML</a>]]></javadoc.breadcrumbs>
+    
     <description.html><![CDATA[<a target="${javadoc.target}" href="https://semanticcms.com/core/pages/">SemanticCMS pages</a> rendered as HTML in a Servlet environment.]]></description.html>
     <!-- TODO: Implement tests -->
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
