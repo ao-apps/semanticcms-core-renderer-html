@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -35,36 +35,32 @@ public enum ComponentPosition {
   /**
    * Components called just after the head opening tag.
    * These components are called in the order registered.
-   * <p>
-   * These are after any scripts in {@link Position#HEAD_START}.
-   * </p>
+   *
+   * <p>These are after any scripts in {@link Position#HEAD_START}.</p>
    */
   HEAD_START(Position.HEAD_START),
 
   /**
    * Components called just before the head closing tag.
    * These components are called in the reverse order registered.
-   * <p>
-   * These are before any scripts in {@link Position#HEAD_END}.
-   * </p>
+   *
+   * <p>These are before any scripts in {@link Position#HEAD_END}.</p>
    */
   HEAD_END(Position.HEAD_END),
 
   /**
    * Components called just after the body opening tag.
    * These components are called in the order registered.
-   * <p>
-   * These are after any scripts in {@link Position#BODY_START}.
-   * </p>
+   *
+   * <p>These are after any scripts in {@link Position#BODY_START}.</p>
    */
   BODY_START(Position.BODY_START),
 
   /**
    * Components called just before the body closing tag.
    * These components are called in the reverse order registered.
-   * <p>
-   * These are before any scripts in {@link Position#BODY_END}.
-   * </p>
+   *
+   * <p>These are before any scripts in {@link Position#BODY_END}.</p>
    */
   BODY_END(Position.BODY_END);
 

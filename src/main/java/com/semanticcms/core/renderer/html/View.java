@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -156,10 +156,9 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Checks if a view applies in global navigation context.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns {@code true} by default
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns {@code true} by default</p>
    */
   public boolean getAppliesGlobally() {
     return true;
@@ -169,15 +168,13 @@ public abstract class View implements Comparable<View> {
    * Checks if a view is applicable the given request and page.
    * For correct determination, the page must have been captured at {@link CaptureLevel#META}
    * level or higher.
-   * <p>
-   * TODO: Store the captureLevel in effect when a page is captured, and confirm that here and other places where
+   *
+   * <p>TODO: Store the captureLevel in effect when a page is captured, and confirm that here and other places where
    *       certain capture levels are required for correct behavior.  Could also automatically re-capture at a higher level
-   *       instead of throwing an exception.
-   * </p>
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns {@code true} by default
-   * </p>
+   *       instead of throwing an exception.</p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns {@code true} by default</p>
    */
   public boolean isApplicable(
       ServletContext servletContext,
@@ -190,10 +187,9 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Gets an id to use for the main navigation link to this view.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns {@code null} by default
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns {@code null} by default</p>
    *
    * @return  the ID or null for none
    */
@@ -203,10 +199,9 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Gets the CSS class to use for the main navigation link to this view.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns {@code null} by default
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns {@code null} by default</p>
    *
    * @return  the CSS class or null for none
    */
@@ -220,10 +215,9 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Gets the optional additional parameter to a view link.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns empty map by default
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns empty map by default</p>
    */
   public Map<String, List<String>> getLinkParams(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, Page page) {
     return Collections.emptyMap();
@@ -234,9 +228,8 @@ public abstract class View implements Comparable<View> {
    * This might be called even when a page is not applicable to this view, such as when browsing to an empty TO-DO list.
    * By default, {@link #getLinkParams(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.semanticcms.core.model.Page) link parameters}
    * are not added.
-   * <p>
-   * This URL is absolute and has already been response encoded.
-   * </p>
+   *
+   * <p>This URL is absolute and has already been response encoded.</p>
    *
    * @see  Book#getCanonicalBase()
    * @see  BookUtils#getCanonicalBase(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, com.semanticcms.core.controller.Book)
@@ -286,10 +279,9 @@ public abstract class View implements Comparable<View> {
   /**
    * Gets the effective last modified time, if known, for the given page in this view.
    * This is used for things such as sitemaps.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * This default implementation returns {@code null} indicating not applicable to this view.
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * This default implementation returns {@code null} indicating not applicable to this view.</p>
    *
    * @return  The effective last modified time or {@code null} if unknown or not applicable.
    */
@@ -332,9 +324,8 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Gets the page title for the view on the given page.
-   * <p>
-   * Defaults to: "view.display - page.title[ - page.pageRef.book.title]"
-   * </p>
+   *
+   * <p>Defaults to: "view.display - page.title[ - page.pageRef.book.title]"</p>
    */
   public String getTitle(
       ServletContext servletContext,
@@ -362,9 +353,8 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Configures the {@linkplain com.aoapps.web.resources.servlet.RegistryEE.Request request-scope web resources} that this view uses.
-   * <p>
-   * Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.
-   * </p>
+   *
+   * <p>Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.</p>
    */
   @SuppressWarnings("NoopMethodInAbstractClass")
   public void configureResources(ServletContext servletContext, HttpServletRequest req, HttpServletResponse resp, Theme theme, Page page, Registry requestRegistry) {
@@ -374,10 +364,9 @@ public abstract class View implements Comparable<View> {
   /**
    * Gets an optional set of additional links to include for this view
    * in the order they should be added.
-   * <p>
-   * Please note, that any links to stylesheets here are never optimized.  Please
-   * prefer {@link #configureResources(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)}.
-   * </p>
+   *
+   * <p>Please note, that any links to stylesheets here are never optimized.  Please
+   * prefer {@link #configureResources(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)}.</p>
    *
    * @see  #configureResources(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)
    */
@@ -394,10 +383,9 @@ public abstract class View implements Comparable<View> {
   /**
    * Gets any per-view scripts, when have the same name as globally registered
    * scripts, must have matching src.
-   * <p>
-   * <b>Implementation Note:</b><br>
-   * returns empty map by default
-   * </p>
+   *
+   * <p><b>Implementation Note:</b><br>
+   * returns empty map by default</p>
    *
    * @see  HtmlRenderer#getScripts()
    */
@@ -418,9 +406,8 @@ public abstract class View implements Comparable<View> {
 
   /**
    * Renders the view.  This is called by the template to fill-out the main content area.
-   * <p>
-   * TODO: Is SkipPageException acceptable at the view rendering stage?
-   * </p>
+   *
+   * <p>TODO: Is SkipPageException acceptable at the view rendering stage?</p>
    */
   public abstract <__ extends FlowContent<__>> void doView(
       ServletContext servletContext,

@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -111,9 +111,8 @@ public abstract class Theme {
 
   /**
    * Configures the {@linkplain com.aoapps.web.resources.servlet.RegistryEE.Request request-scope web resources} that this theme uses.
-   * <p>
-   * Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.
-   * </p>
+   *
+   * <p>Implementers should call <code>super.configureResources(…)</code> as a matter of convention, despite this default implementation doing nothing.</p>
    */
   @SuppressWarnings("NoopMethodInAbstractClass")
   public void configureResources(ServletContext servletContext, HttpServletRequest req, HttpServletResponse resp, View view, Page page, Registry requestRegistry) {
@@ -122,14 +121,12 @@ public abstract class Theme {
 
   /**
    * Renders the theme.
-   * <p>
-   * Both the {@link Serialization} and {@link Doctype} may have been set
-   * on the request, and these must be considered in the HTML generation.
-   * </p>
-   * <p>
-   * When {@link ServletResponse#isCommitted() response is committed}, this theme method is never called and
-   * {@link SkipPageException} is thrown instead.
-   * </p>
+   *
+   * <p>Both the {@link Serialization} and {@link Doctype} may have been set
+   * on the request, and these must be considered in the HTML generation.</p>
+   *
+   * <p>When {@link ServletResponse#isCommitted() response is committed}, this theme method is never called and
+   * {@link SkipPageException} is thrown instead.</p>
    *
    * @see com.aoapps.encoding.servlet.SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
    * @see com.aoapps.encoding.servlet.DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)

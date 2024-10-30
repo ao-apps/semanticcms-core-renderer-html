@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2015, 2016, 2017, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2015, 2016, 2017, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -47,9 +47,8 @@ public final class Headers {
 
   /**
    * Checks if the request is for an export.
-   * <p>
-   * TODO: Automatically disable auto-last-modified during export to only require a single header.
-   * </p>
+   *
+   * <p>TODO: Automatically disable auto-last-modified during export to only require a single header.</p>
    */
   public static boolean isExporting(HttpServletRequest request) {
     return EXPORTING_HEADER_VALUE.equalsIgnoreCase(request.getHeader(EXPORTING_HEADER));

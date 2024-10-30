@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -39,14 +39,11 @@ import javax.servlet.http.HttpServletResponse;
 public interface Component {
 
   /**
-   * <p>
    * Renders a component in the output stream.
-   * </p>
-   * <p>
-   * This will be called for each of the component positions as the page
+   *
+   * <p>This will be called for each of the component positions as the page
    * is rendered by the theme.  A component that does not apply to the given
-   * view, page, or position should take no action and return quickly.
-   * </p>
+   * view, page, or position should take no action and return quickly.</p>
    *
    * @param view  The view that is currently being rendered.  May be {@code null} during error handling.
    * @param page  The page that is currently being rendered.  May be {@code null} during error handling.

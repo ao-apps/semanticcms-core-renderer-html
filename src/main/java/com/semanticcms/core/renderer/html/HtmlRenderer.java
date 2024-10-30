@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -58,10 +58,9 @@ import javax.servlet.jsp.SkipPageException;
 
 /**
  * The HTML Renderer application context.
- * <p>
- * TODO: Consider custom EL resolver for this variable.
- * http://stackoverflow.com/questions/5016965/how-to-add-a-custom-variableresolver-in-pure-jsp
- * </p>
+ *
+ * <p>TODO: Consider custom EL resolver for this variable.
+ * http://stackoverflow.com/questions/5016965/how-to-add-a-custom-variableresolver-in-pure-jsp</p>
  */
 public class HtmlRenderer implements Renderer {
 
@@ -126,9 +125,8 @@ public class HtmlRenderer implements Renderer {
   // <editor-fold defaultstate="collapsed" desc="Views">
   /**
    * The parameter name used for views.
-   * <p>
-   * TODO: Move to new Link type of Element in core-model?
-   * </p>
+   *
+   * <p>TODO: Move to new Link type of Element in core-model?</p>
    */
   public static final String VIEW_PARAM = "view";
 
