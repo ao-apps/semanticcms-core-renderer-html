@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2024  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2024, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -246,29 +246,29 @@ public abstract class View implements Comparable<View> {
     //       We were passing a partial path to response.encodeURL
     String encodedBookPrefix = URIEncoder.encodeURI(bookRef.getPrefix());
     String encodedServletPath;
-      {
-        StringBuilder servletPath = new StringBuilder();
-        servletPath.append(encodedBookPrefix);
-        URIEncoder.encodeURI(pageRef.getPath().toString(), servletPath);
-        if (!isDefault()) {
-          servletPath.append("?view=");
-          URIEncoder.encodeURIComponent(getName(), servletPath);
-        }
-        encodedServletPath = Canonical.encodeCanonicalURL(response, servletPath.toString());
+    {
+      StringBuilder servletPath = new StringBuilder();
+      servletPath.append(encodedBookPrefix);
+      URIEncoder.encodeURI(pageRef.getPath().toString(), servletPath);
+      if (!isDefault()) {
+        servletPath.append("?view=");
+        URIEncoder.encodeURIComponent(getName(), servletPath);
       }
+      encodedServletPath = Canonical.encodeCanonicalURL(response, servletPath.toString());
+    }
     // To be safe, we're encoding the servletPath, then picking it back into a bookPath
     // TODO: How would this interact with things like PrettyUrlFilter?
     String encodedBookPath;
-      {
-        if (encodedBookPrefix.isEmpty()) {
-          encodedBookPath = encodedServletPath;
-        } else {
-          if (!encodedServletPath.startsWith(encodedBookPrefix)) {
-            throw new IllegalStateException("Encoded servlet path is outside this book, unable to canonicalize: encodedServletPath = " + encodedServletPath);
-          }
-          encodedBookPath = encodedServletPath.substring(encodedBookPrefix.length());
+    {
+      if (encodedBookPrefix.isEmpty()) {
+        encodedBookPath = encodedServletPath;
+      } else {
+        if (!encodedServletPath.startsWith(encodedBookPrefix)) {
+          throw new IllegalStateException("Encoded servlet path is outside this book, unable to canonicalize: encodedServletPath = " + encodedServletPath);
         }
+        encodedBookPath = encodedServletPath.substring(encodedBookPrefix.length());
       }
+    }
     return BookUtils.getCanonicalBase(
         servletContext,
         request,
