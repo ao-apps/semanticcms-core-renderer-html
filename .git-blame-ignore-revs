@@ -46,3 +46,12 @@ e8800bcbf75c549aa9686d30ec93ee92289cb0bc
 
 # Added all whitespace-only commits to .git-blame-ignore-revs
 fea8681982f307d2f56f4e627c8c331b488bfad5
+
+# Removed unnecessary whitespace
+7cd944e35f47887728dc9bc2eed6e15da81c6149
+
+# Released semanticcms-parent-book-1.20.1
+d5414e9fc586cb46f9da4adbcebbbcd48a8e522f
+
+# checkstyle-11.0.0 compatibility
+d2d01c284fad9ae8af02c568ccde520b0c8ff025
