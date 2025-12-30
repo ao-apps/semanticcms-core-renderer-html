@@ -40,6 +40,7 @@ import com.semanticcms.core.model.Page;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.pages.CaptureLevel;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -50,7 +51,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
-import org.joda.time.ReadableInstant;
 
 /**
  * A site may provide multiple views of the data.  Except the default content view,
@@ -285,7 +285,7 @@ public abstract class View implements Comparable<View> {
    *
    * @return  The effective last modified time or {@code null} if unknown or not applicable.
    */
-  public ReadableInstant getLastModified(
+  public ZonedDateTime getLastModified(
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
