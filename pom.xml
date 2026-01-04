@@ -201,9 +201,9 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
                       <includes>element-list, package-list</includes>
                       <outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-web-resources-servlet</outputDirectory>
                     </artifactItem>
-                    <!-- ao-javadoc-offline: <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId><classifier>javadoc</classifier> -->
-                    <!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId><classifier>javadoc</classifier> -->
-                    <!-- ao-javadoc-offline: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId><classifier>javadoc</classifier> -->
+                    <!-- ao-javadoc-offline: <groupId>jakarta.el</groupId><artifactId>jakarta.el-api</artifactId><classifier>javadoc</classifier> -->
+                    <!-- ao-javadoc-offline: <groupId>jakarta.servlet</groupId><artifactId>jakarta.servlet-api</artifactId><classifier>javadoc</classifier> -->
+                    <!-- ao-javadoc-offline: <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId><classifier>javadoc</classifier> -->
                     <artifactItem>
                       <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId><classifier>javadoc</classifier>
                       <includes>element-list, package-list</includes>
@@ -288,9 +288,9 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
                   <url>https://oss.aoapps.com/web-resources/servlet/apidocs/</url>
                   <location>${project.build.directory}/offlineLinks/com.aoapps/ao-web-resources-servlet</location>
                 </offlineLink>
-                <!-- ao-javadoc-offline: <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId><classifier>javadoc</classifier> -->
-                <!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId><classifier>javadoc</classifier> -->
-                <!-- ao-javadoc-offline: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId><classifier>javadoc</classifier> -->
+                <!-- ao-javadoc-offline: <groupId>jakarta.el</groupId><artifactId>jakarta.el-api</artifactId><classifier>javadoc</classifier> -->
+                <!-- ao-javadoc-offline: <groupId>jakarta.servlet</groupId><artifactId>jakarta.servlet-api</artifactId><classifier>javadoc</classifier> -->
+                <!-- ao-javadoc-offline: <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId><classifier>javadoc</classifier> -->
                 <offlineLink>
                   <url>https://semanticcms.com/core/controller/apidocs/</url>
                   <location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-controller</location>
@@ -342,34 +342,6 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
         <org.apache.maven.plugins.maven-javadoc-plugin.version>${org.apache.maven.plugins.maven-javadoc-plugin.version.compat}</org.apache.maven.plugins.maven-javadoc-plugin.version>
         <copy-element-list-to-package-list-before-javadoc.phase>prepare-package</copy-element-list-to-package-list-before-javadoc.phase>
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.felix</groupId><artifactId>maven-bundle-plugin</artifactId>
-            <configuration>
-              <instructions>
-                <!--
-                  Releases use "Automatic-Module-Name" instead of "module-info.java"
-                  since has direct dependencies that are not yet modularized:
-                  javax.el-api-3.0.0.jar
-                  javax.servlet-api-3.1.0.jar
-                  javax.servlet.jsp-api-2.3.3.jar
-                -->
-                <Automatic-Module-Name>${module.name}</Automatic-Module-Name>
-                <Private-Package>!.</Private-Package>
-              </instructions>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId>
-            <configuration>
-              <excludes>
-                <exclude>**/module-info.class</exclude>
-              </excludes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 
@@ -409,9 +381,9 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
       <dependency>
         <groupId>com.aoapps</groupId><artifactId>ao-web-resources-servlet</artifactId><version>0.7.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
       </dependency>
-      <!-- javaee-web-api-bom: <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId> -->
-      <!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
-      <!-- javaee-web-api-bom: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
+      <!-- jakartaee-web-profile-bom: <groupId>jakarta.el</groupId><artifactId>jakarta.el-api</artifactId> -->
+      <!-- jakartaee-web-profile-bom: <groupId>jakarta.servlet</groupId><artifactId>jakarta.servlet-api</artifactId> -->
+      <!-- jakartaee-web-profile-bom: <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId> -->
       <dependency>
         <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId><version>3.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
       </dependency>
@@ -469,7 +441,7 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
       </dependency>
       <!-- Imports -->
       <dependency>
-        <groupId>com.aoapps</groupId><artifactId>javaee-web-api-bom</artifactId><version>7.0.1-POST-SNAPSHOT</version>
+        <groupId>com.aoapps</groupId><artifactId>jakartaee-web-profile-bom</artifactId><version>10.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -514,13 +486,13 @@ along with semanticcms-core-renderer-html.  If not, see <https://www.gnu.org/lic
       <groupId>com.aoapps</groupId><artifactId>ao-web-resources-servlet</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.el</groupId><artifactId>javax.el-api</artifactId>
+      <groupId>jakarta.el</groupId><artifactId>jakarta.el-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId><artifactId>jakarta.servlet-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId>
+      <groupId>jakarta.servlet.jsp</groupId><artifactId>jakarta.servlet.jsp-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId>

@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-renderer-html - SemanticCMS pages rendered as HTML in a Servlet environment.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -28,14 +28,14 @@ import com.aoapps.encoding.Serialization;
 import com.aoapps.servlet.attribute.ScopeEE;
 import com.aoapps.web.resources.registry.Registry;
 import com.semanticcms.core.model.Page;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.SkipPageException;
 import java.io.IOException;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.SkipPageException;
 
 /**
  * A theme is responsible for the overall view of the site.
@@ -128,8 +128,8 @@ public abstract class Theme {
    * <p>When {@link ServletResponse#isCommitted() response is committed}, this theme method is never called and
    * {@link SkipPageException} is thrown instead.</p>
    *
-   * @see com.aoapps.encoding.servlet.SerializationEE#get(javax.servlet.ServletContext, javax.servlet.http.HttpServletRequest)
-   * @see com.aoapps.encoding.servlet.DoctypeEE#get(javax.servlet.ServletContext, javax.servlet.ServletRequest)
+   * @see com.aoapps.encoding.servlet.SerializationEE#get(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest)
+   * @see com.aoapps.encoding.servlet.DoctypeEE#get(jakarta.servlet.ServletContext, jakarta.servlet.ServletRequest)
    */
   public abstract void doTheme(
       ServletContext servletContext,
