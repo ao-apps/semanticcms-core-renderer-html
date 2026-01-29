@@ -125,7 +125,7 @@ public abstract class View implements Comparable<View> {
   /**
    * {@inheritDoc}
    *
-   * @see  #getDisplay()
+   * @see  View#getDisplay()
    */
   @Override
   public String toString() {
@@ -226,7 +226,7 @@ public abstract class View implements Comparable<View> {
   /**
    * Gets the canonical URL for the given page in this view.
    * This might be called even when a page is not applicable to this view, such as when browsing to an empty TO-DO list.
-   * By default, {@link #getLinkParams(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.model.Page) link parameters}
+   * By default, {@link View#getLinkParams(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.model.Page) link parameters}
    * are not added.
    *
    * <p>This URL is absolute and has already been response encoded.</p>
@@ -366,9 +366,9 @@ public abstract class View implements Comparable<View> {
    * in the order they should be added.
    *
    * <p>Please note, that any links to stylesheets here are never optimized.  Please
-   * prefer {@link #configureResources(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)}.</p>
+   * prefer {@link View#configureResources(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)}.</p>
    *
-   * @see  #configureResources(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)
+   * @see  View#configureResources(jakarta.servlet.ServletContext, jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, com.semanticcms.core.renderer.html.Theme, com.semanticcms.core.model.Page, com.aoapps.web.resources.registry.Registry)
    */
   public Collection<com.aoapps.taglib.Link> getLinks(
       ServletContext servletContext,

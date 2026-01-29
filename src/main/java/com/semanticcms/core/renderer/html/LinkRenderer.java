@@ -80,9 +80,9 @@ public final class LinkRenderer {
   /**
    * Writes a broken path reference as "¿domain:/book/path{#targetId}?", no encoding.
    *
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
    */
   // TODO: Encoder variants
   public static void writeBrokenPath(PageRef pageRef, String targetId, Appendable out) throws IOException {
@@ -102,19 +102,19 @@ public final class LinkRenderer {
   /**
    * Writes a broken path reference as "¿domain:/book/path?", no encoding.
    *
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef)
    */
   public static void writeBrokenPath(PageRef pageRef, Appendable out) throws IOException {
     writeBrokenPath(pageRef, null, out);
   }
 
   /**
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef)
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
    */
   public static String getBrokenPath(PageRef pageRef, String targetId) {
     BookRef bookRef = pageRef.getBookRef();
@@ -141,10 +141,10 @@ public final class LinkRenderer {
   }
 
   /**
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
    */
   public static String getBrokenPath(PageRef pageRef) {
     return getBrokenPath(pageRef, null);
@@ -153,9 +153,9 @@ public final class LinkRenderer {
   /**
    * Writes a broken path reference as "¿domain:/book/path{#targetId}?", encoding for XHTML.
    *
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef, java.lang.String)
    */
   // TODO: Convert to a single Encoder variant
   public static void writeBrokenPathInXhtml(PageRef pageRef, String targetId, Appendable out) throws IOException {
@@ -175,10 +175,10 @@ public final class LinkRenderer {
   /**
    * Writes a broken path reference as "¿domain:/book/path?", encoding for XHTML.
    *
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.String, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtmlAttribute(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef)
    */
   public static void writeBrokenPathInXhtml(PageRef pageRef, Appendable out) throws IOException {
     writeBrokenPathInXhtml(pageRef, null, out);
@@ -187,9 +187,9 @@ public final class LinkRenderer {
   /**
    * Writes a broken path reference as "¿domain:/book/path?", encoding for XML attribute.
    *
-   * @see  #writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
-   * @see  #getBrokenPath(com.semanticcms.core.model.PageRef)
+   * @see  LinkRenderer#writeBrokenPath(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#writeBrokenPathInXhtml(com.semanticcms.core.model.PageRef, java.lang.Appendable)
+   * @see  LinkRenderer#getBrokenPath(com.semanticcms.core.model.PageRef)
    */
   public static void writeBrokenPathInXhtmlAttribute(PageRef pageRef, Appendable out) throws IOException {
     BookRef bookRef = pageRef.getBookRef();

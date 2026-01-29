@@ -70,7 +70,7 @@ public class HtmlRenderer implements Renderer {
 
   /**
    * Registers the {@link HtmlRenderer} with {@link SemanticCMS} and exposes the {@link HtmlRenderer} as an
-   * application-scope variable "{@link #APPLICATION_ATTRIBUTE_NAME}".
+   * application-scope variable "{@link HtmlRenderer#APPLICATION_ATTRIBUTE_NAME}".
    */
   @WebListener("Registers the HtmlRenderer with SemanticCMS and exposes the HtmlRenderer as an application-scope variable \"" + APPLICATION_ATTRIBUTE_NAME + "\".")
   public static class Initializer implements ServletContextListener {
